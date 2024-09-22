@@ -1,0 +1,6 @@
+._.gitignore
+._.DS_Store
+.DS_Store
+._data.db
+._format.db
+._server.py
