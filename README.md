@@ -1,10 +1,11 @@
-薬の飲み忘れ防止アプリです。
+薬の飲み忘れ防止システムです
+A system to prevent forgetting to take medicine
 
-フロントエンド
-https://github.com/ken7python/MediTime_front
+## プロジェクト構成 / Project Structure
 
-バッグエンド
-https://github.com/ken7python/MediTime_server
+このシステムは、以下の3つのリポジトリから構成されています。  
+This app is composed of the following three repositories:
 
-ラズパイ(薬の容器用)
-https://github.com/ken7python/MediTime_container
+- フロントエンド / Frontend: [MediTime_front](https://github.com/ken7python/MediTime_front)
+- バックエンド / Backend: [MediTime_server](https://github.com/ken7python/MediTime_server)
+- ラズパイ（薬の容器用） / Raspberry Pi for Medication Container: [MediTime_container](https://github.com/ken7python/MediTime_container)
