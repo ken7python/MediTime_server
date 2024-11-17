@@ -237,6 +237,46 @@ def delete_visiting_label():
         conn.commit()
         cur.close()
         return "OK"
+@app.route('/uploadImage',methods=['POST'])
+def uploadImage():
+    if request.method == 'POST':
+        data = json.loads(request.data.decode('utf-8'))
+        #print(data)
+        label = data['label']
+        image = data['image']
+
+        cur = conn.cursor()
+        cur.execute("SELECT * FROM image WHERE label=?", (label,))
+        existing_image = cur.fetchone()
+        if existing_image:
+            cur.execute("UPDATE image SET image=? WHERE label=?",(image,label))
+            conn.commit()
+            cur.close()
+            return "OK"
+        else:
+            cur.execute("INSERT INTO image(label,image) VALUES(?,?)",(label,image))
+            conn.commit()
+            cur.close()
+            return "OK"
+@app.route('/getImage',methods=['GET'])
+def getImage():
+    if request.method == 'GET':
+        cur = conn.cursor()
+        cur.execute("SELECT * FROM image")
+        image = cur.fetchall()
+        cur.close()
+        return {'image':image}
+@app.route('/deleteImage',methods=['POST'])
+def deleteImage():
+    if request.method == 'POST':
+        data = json.loads(request.data.decode('utf-8'))
+        print(data)
+        label = data['label']
+        cur = conn.cursor()
+        cur.execute("DELETE FROM image WHERE label=?",(label,))
+        conn.commit()
+        cur.close()
+        return "OK"
     
 if __name__ == '__main__':
     app.run(host="0.0.0.0",port=3000,debug=False)
